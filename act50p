@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class aaMareasfp {
+	
+	private static Scanner input = new Scanner (System.in);
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner (System.in);
+		// TODO Auto-generated method stub
+		  int fechaAnterior = 0;
+	        
+	        System.out.println("Ingrese los registros de altura de marea:");
+	        
+	        while (true) {
+	            System.out.print("Fecha (AAAAMMDD) o -1 para salir: ");
+	            int fecha = Integer.parseInt(input.nextLine());
+	            
+	            // Verificar si se debe salir del bucle
+	           
+	            
+	            // Validar la secuencia de fechas
+	            if (fecha <= fechaAnterior || fecha == -1) {
+	                System.out.println("Error: La fecha ingresada no es mayor que la anterior. Descartando este juego de datos.");
+	                continue;
+	            }
+	            
+	            // Ingresar altura mínima y máxima
+	            System.out.print("Altura mínima de la marea en metros: ");
+	            double alturaMinima = Double.parseDouble(input.nextLine());
+	            
+	            System.out.print("Altura máxima de la marea en metros: ");
+	            double alturaMaxima = Double.parseDouble(input.nextLine());
+	            
+		    // Verificar y corregir si los valores están invertidos
+		    if (alturaMinima > alturaMaxima) {
+			System.out.println("Los datos de altura han sido invertidos. Corrigiendo...");
+			double temp = alturaMinima;
+			alturaMinima = alturaMaxima;
+			alturaMaxima = temp;
+		    }
+		    
+		    // Mostrar los datos ingresados
+		    System.out.println("Fecha: " + fecha);
+		    System.out.println("Altura mínima de la marea: " + alturaMinima + " metros");
+		    System.out.println("Altura máxima de la marea: " + alturaMaxima + " metros");
+		    
+		    // Actualizar la fecha anterior
+		    fechaAnterior = fecha;
+	        }
+	    }
+	
+	}
+	 
