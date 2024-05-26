@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class AA_PIPATI{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("¡Bienvenido a Piedra, Papel o Tijera!");
+
+        // Solicitar a cuántos puntos se jugará
+        System.out.print("Ingrese el puntaje al que se jugará (mayor a 0): ");
+        int puntajeMaximo = scanner.nextInt();
+
+        // Validar que el puntaje sea mayor a 0
+        while (puntajeMaximo <= 0) {
+            System.out.print("Por favor, ingrese un puntaje válido (mayor a 0): ");
+            puntajeMaximo = scanner.nextInt();
+        }
+
+        int puntajeAna = 0;
+        int puntajeBartolo = 0;
+
+        // Bucle principal del juego
+        while (puntajeAna < puntajeMaximo && puntajeBartolo < puntajeMaximo) {
+            // Solicitar las opciones elegidas por Ana y Bartolo
+            System.out.print("\nTurno de Ana - Elija Piedra, Papel o Tijera: ");
+            String opcionAna = scanner.next().toLowerCase();
+
+            System.out.print("Turno de Bartolo - Elija Piedra, Papel o Tijera: ");
+            String opcionBartolo = scanner.next().toLowerCase();
+
+            // Determinar el ganador de la ronda
+            String ganadorRonda = "";
+
+            // Actualizar los puntajes
+           if (ganadorRonda.equals("ANA")) {
+              puntajeAna++;
+          } else if (ganadorRonda.equals("BARTOLO")) {
+              puntajeBartolo++;
+            }
+
+            // Mostrar el resultado de la ronda
+            System.out.println("Resultado de la ronda: " + ganadorRonda);
+            System.out.println("Puntaje - Ana: " + puntajeAna + "  Bartolo: " + puntajeBartolo);
+        }
+
+        // Determinar el ganador del juego
+        if (puntajeAna > puntajeBartolo) {
+            System.out.println("\n¡ANA gana el juego!");
+        } else if (puntajeBartolo > puntajeAna) {
+            System.out.println("\n¡BARTOLO gana el juego!");
+        } else {
+            System.out.println("\n¡El juego termina en empate!");
+        }
+
+        scanner.close();
+    }
+
+    // Método para determinar el ganador de una ronda
+    public static String determinarGanador(String opcionAna, String opcionBartolo) {
+        if (opcionAna.equals(opcionBartolo)) {
+            return "EMPATE";
+        } else if ((opcionAna.equals("piedra") && opcionBartolo.equals("tijera")) ||
+                (opcionAna.equals("tijera") && opcionBartolo.equals("papel")) ||
+                (opcionAna.equals("papel") && opcionBartolo.equals("piedra"))) {
+            return "ANA";
+        } else {
+            return "BARTOLO";
+        }
+    }
+}
