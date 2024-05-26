@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class AaTareaFP {
+	
+	private static Scanner input = new Scanner (System.in);
+	Scanner sc = new Scanner (System.in);
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+		
+		
+		int totalDias = 10;
+        int tiempoMin = 15;
+        int tiempoMax = 20;
+        int tiempoTotal = 0;
+        int menorTiempo = 0;
+        int contDebajo15 = 0;
+        int promedio;
+        boolean apto = true;
+        
+        for (int i = 1; i <= totalDias; i++) {
+            System.out.println("Ingrese el tiempo de la prueba del día " + i + " en minutos:");
+            int tiempo = Integer.parseInt(input.next());
+            
+            // Validar que el tiempo esté en el rango correcto
+            if (tiempo <= 0 || tiempo >= 100) {
+                System.out.println("Tiempo invalido, ingrese uno valido");
+                i--; // Decrementar el contador para repetir la misma iteración.
+                continue;
+            }
+            
+            // Verificar si el tiempo excede el máximo permitido
+            if (tiempo > tiempoMax) {
+                apto = false;
+                break;
+            }
+            
+            // Verificar si el tiempo es menor de 15 minutos
+            if (tiempo < tiempoMin) {
+            	contDebajo15++;
+            }
+            
+            // Actualizar el tiempo total y el tiempo mínimo registrado
+            tiempoTotal += tiempo;
+            if (tiempo < menorTiempo) {
+                menorTiempo = tiempo;
+            }
+        }
+        
+        promedio= tiempoTotal/totalDias;
+          
+        // Verificar condiciones de aptitud
+        if (apto && contDebajo15 > 0 && promedio <= 18) {
+            System.out.println("El atleta está apto para la competencia.");
+            System.out.println("Promedio de tiempo: " + (tiempoTotal / totalDias) + " minutos.");
+            System.out.println("Menor tiempo realizado: " + menorTiempo + " minutos.");
+        } else {
+            System.out.println("El atleta no está apto para la competencia.");
+        }
+        
+        input.close();
+    }
+
+
+	}
+
