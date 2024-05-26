@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class AAKARTS {
+	private static Scanner input = new Scanner (System.in);
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		// TODO Auto-generated method stub
+		final int TOPE_VUELTAS=5;
+		final char VERDE = 'V';
+		final char FIN= 'F';
+		final char ROJO = 'R'; 
+		String colorKarting;
+		int cantPianitoVuelta;
+		int cantVueltasV=0, cantVueltasR=0, cantPianoR=0, cantPianoV=0;
+		String mensaje;
+		double promedioV, promedioR;
+		
+		
+		boolean colorValido;
+		do { System.out.println("Ingrese el color del karting");
+		colorKarting = input.nextLine() ;
+		colorValido= (colorKarting.equals("ROJO")) || (colorKarting == "V") || (colorKarting =="F");
+	} while(!colorValido);
+		
+		while ((colorKarting != "FIN") && (cantVueltasV < TOPE_VUELTAS) && (cantVueltasR < TOPE_VUELTAS)){
+			do{ 
+				System.out.println("Ingrese la cantidad de veces que piso pianito");
+				cantPianitoVuelta= Integer.parseInt(input.nextLine());
+			}while(cantPianitoVuelta < 0);
+			
+			
+			if (colorKarting == "VERDE"){
+				cantVueltasV++;
+				cantPianoV += cantPianitoVuelta;
+			} else{
+				cantVueltasR++;
+				cantPianoR += cantPianitoVuelta;
+			}
+			
+			if (((cantVueltasV != TOPE_VUELTAS) && (cantVueltasR != TOPE_VUELTAS))){
+				do { System.out.println("Ingrese el color del karting");
+				colorKarting = input.nextLine() ;
+			} while(!colorValido);
+			}
+		}
+	if ((colorKarting == "FIN")){
+		mensaje = "Carrera Indefinida";
+		} else if (cantVueltasV > cantVueltasR){
+			mensaje = "Gano el verde";
+		} else{
+			mensaje = "Gano el rojo";
+		}
+			System.out.println(mensaje);
+			
+			promedioR= cantPianoR/cantVueltasR;
+			promedioV= cantPianoV/cantVueltasV;
+			
+			
+			
+			if (promedioV < promedioR ){
+				mensaje = "En promedio el Karting Verde piso menos pianitos";
+			}else if (promedioR < promedioV){
+				mensaje = "En promedio el Karting Rojo piso menos pianitos";
+			} else {
+				mensaje = "Estan empatados";
+			}
+			System.out.println(mensaje);
+		}
+
+	
+}
