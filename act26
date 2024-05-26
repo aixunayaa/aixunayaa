@@ -19,3 +19,29 @@ public class Eje26_act3 {
 	}
 
 }
+
+
+/*import java.util.Scanner;
+public class eje26bis {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner (System.in);
+		Scanner sc = new Scanner (System.in);
+		// TODO Auto-generated method stub
+		System.out.print("Ingresa un número N: ");
+        int n = Integer.parseInt(input.nextLine());
+        
+        int contador = 0;
+        int numeroActual = 1;
+        
+        while (contador < n) {
+            if (numeroActual % 3 == 0 && numeroActual % 5 != 0) {
+                System.out.println(numeroActual);
+                contador++;
+            }
+            
+            numeroActual++;
+        }
+    }
+
+	}*/
