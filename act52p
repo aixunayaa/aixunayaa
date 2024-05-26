@@ -1,0 +1,101 @@
+import java.util.Scanner;
+
+public class AAFredd {
+// TODO Auto-generated method stub
+		    public static void main(String[] args) {
+		        Scanner scanner = new Scanner(System.in);
+		        char tamaño;
+		        int cantidadPedidosChico = 0, cantidadPedidosMediano = 0, cantidadPedidosGrande = 0;
+		        double totalImporte = 0, importePedidoMasCaro = 0;
+		        String compradorPedidoMasCaro = "";
+		        int porcentajePedidosChico = 0;
+		        int totalPedidos = 0;
+
+		        while (true) {
+		            System.out.println("Ingrese el tamaño del helado (C: Chico, M: Mediano, G: Grande, Z para finalizar):");
+		            tamaño = scanner.next().charAt(0);
+		            if (tamaño == 'Z') {
+		                break;
+		            } else if (tamaño != 'C' && tamaño != 'M' && tamaño != 'G') {
+		                System.out.println("Tamaño de helado no válido. Por favor, ingrese nuevamente.");
+		                continue;
+		            }
+
+		            totalPedidos++;
+
+		            System.out.println("Ingrese la cantidad de gustos (1-4):");
+		            int cantidadGustos = scanner.nextInt();
+		            if (cantidadGustos < 1 || cantidadGustos > 4) {
+		                System.out.println("Cantidad de gustos no válida. Por favor, ingrese nuevamente.");
+		                continue;
+		            }
+
+		            double importeCobrar;
+		            do {
+		                System.out.println("Ingrese el importe a cobrar (mayor a $50):");
+		                importeCobrar = scanner.nextDouble();
+		                if (importeCobrar <= 50) {
+		                    System.out.println("Importe a cobrar no válido. Debe ser mayor a $50. Por favor, ingrese nuevamente.");
+		                }
+		            } while (importeCobrar <= 50);
+
+		            System.out.println("Ingrese el nombre del comprador:");
+		            String nombreComprador = scanner.next();
+
+		            String gustoMenosCalorias = "";
+		            int minCalorias = Integer.MAX_VALUE;
+		            System.out.println("Ingrese los detalles de los gustos:");
+		            for (int i = 1; i <= cantidadGustos; i++) {
+		                System.out.println("Gusto #" + i + ":");
+		                System.out.println("Nombre:");
+		                String nombreGusto = scanner.next();
+		                System.out.println("Cantidad de calorías:");
+		                int calorias = scanner.nextInt();
+		                if (calorias < minCalorias) {
+		                    minCalorias = calorias;
+		                    gustoMenosCalorias = nombreGusto;
+		                }
+		            }
+
+		            switch (tamaño) {
+		                case 'C':
+		                    cantidadPedidosChico++;
+		                    break;
+		                case 'M':
+		                    cantidadPedidosMediano++;
+		                    break;
+		                case 'G':
+		                    cantidadPedidosGrande++;
+		                    break;
+		            }
+
+		            totalImporte += importeCobrar;
+
+		            if (importeCobrar > importePedidoMasCaro) {
+		                importePedidoMasCaro = importeCobrar;
+		                compradorPedidoMasCaro = nombreComprador;
+		            }
+
+		            if (tamaño == 'C') {
+		                porcentajePedidosChico++;
+		            }
+		        }
+
+		        System.out.println("Cantidad de pedidos por tamaño:");
+		        System.out.println("Chico: " + cantidadPedidosChico);
+		        System.out.println("Mediano: " + cantidadPedidosMediano);
+		        System.out.println("Grande: " + cantidadPedidosGrande);
+
+		        double promedioImporte = totalImporte / totalPedidos;
+		        System.out.println("Promedio de importe entre todas las compras: $" + promedioImporte);
+
+		        System.out.println("Pedido más caro:");
+		        System.out.println("Importe: $" + importePedidoMasCaro);
+		        System.out.println("Comprador: " + compradorPedidoMasCaro);
+
+		        double porcentajeChico = (porcentajePedidosChico / (double) totalPedidos) * 100;
+		        System.out.println("Porcentaje de pedidos de tipo 'C' con respecto al total: " + porcentajeChico + "%");
+		    }
+		
+
+	}
